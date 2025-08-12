@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Preppy Credit</title>
+  </head>
+  <body>
+    <h1>Preppy Credit</h1>
+
+    <p>Input amount of Credits</p>
+    <input type="number" id="money" placeholder="put in the credits">
+    <button onclick="saveCredits()">Save Credits</button>
+
+    <br><br>
+
+    <p>Input subtraction</p>
+    <input type="number" id="s" placeholder="input money to subtract">
+    <button onclick="subCreds()">Subtract Credits</button>
+
+    <br><br><br>
+
+    <p id="ou"></p>
+
+    <script>
+      function saveCredits() {
+        const creds = parseFloat(document.getElementById('money').value) || 0;
+        localStorage.setItem('oldCreds', creds);
+      }
+
+      function subCreds() {
+        const suber = parseFloat(document.getElementById('s').value) || 0;
+        const oldCreds = parseFloat(localStorage.getItem('oldCreds')) || 0;
+        const newCreds = oldCreds - suber;
+        localStorage.setItem('oldCreds', newCreds);
+        document.getElementById("ou").textContent = `Remaining Credits: ${newCreds}`;
+      }
+    </script>
+  </body>
+</html>
